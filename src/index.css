@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+i{
+  cursor: pointer;
+}
+/* Style for navbar links */
+.custom-navlink {
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.3s ease-in-out;
+}
+
+.custom-navlink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0%;
+  background-color: #0d6efd; /* Bootstrap primary blue */
+  transition: width 0.3s ease-in-out;
+}
+
+.custom-navlink:hover::after {
+  width: 100%;
+}
+
+.active-link::after {
+  width: 100%;
+}
