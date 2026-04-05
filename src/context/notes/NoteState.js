@@ -2,13 +2,12 @@ import { useState } from "react";
 import NoteContext from "./noteContext";
 
 const NoteState =(props)=> {
-  const host = `http://localhost:5000`  
   const notesInitial = []
   const [notes , setNotes] = useState(notesInitial)
 
   // Get All Notes
   const getNotes = async()=>{
-    const response = await fetch(`${host}/api/notes/fetchallnotes`, {
+    const response = await fetch(`/api/notes/fetchallnotes`, {
       method: 'GET',
       headers:{
         'Content-Type': 'application/json',
@@ -22,7 +21,7 @@ const NoteState =(props)=> {
 
   // Add a Note 
   const addNote = async(title, description, tag)=>{
-    const response = await fetch(`${host}/api/notes/addnote`, {
+    const response = await fetch(`/api/notes/addnote`, {
       method: 'POST',
       headers:{
         'Content-Type': 'application/json',
@@ -37,13 +36,14 @@ const NoteState =(props)=> {
 
   // Delete a Note
   const deleteNote = async(id)=>{
-    await fetch(`${host}/api/notes/deletenote/${id}`, {
-      method: 'DELETE',
-      headers:{
-        'Content-Type': 'application/json',
-        'auth-token': localStorage.getItem ('token')
-      }
-    });
+    await fetch(`/api/notes/deletenote`, {
+       method: 'DELETE',
+       headers: {
+      'Content-Type': 'application/json',
+      'auth-token': localStorage.getItem('token')
+    },
+    body: JSON.stringify({ id })
+  });
 
     const newNotes = notes.filter((note)=> note._id !== id);
     setNotes(newNotes);
@@ -51,14 +51,14 @@ const NoteState =(props)=> {
 
   // Edit a Note 
   const editNote = async(id, title , description, tag)=>{
-    await fetch(`${host}/api/notes/updatenote/${id}`, {
-      method: 'PUT',  // ✅ FIXED
-      headers:{
-        'Content-Type': 'application/json',
-        'auth-token': localStorage.getItem ('token')
-      },
-      body: JSON.stringify({title, description, tag})
-    });
+    await fetch(`/api/notes/updatenote`, {
+      method: 'PUT',
+      headers: {
+      'Content-Type': 'application/json',
+      'auth-token': localStorage.getItem('token')
+   },
+   body: JSON.stringify({ id, title, description, tag })
+ });
 
     // ✅ Make deep copy before updating
     let newNotes = JSON.parse(JSON.stringify(notes));

@@ -10,7 +10,7 @@ const Account = () => {
 
   // Fetch user details
   const getUser = async () => {
-    const response = await fetch("http://localhost:5000/api/auth/getuser", {
+    const response = await fetch("/api/auth/getuser", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -25,7 +25,7 @@ const Account = () => {
   // Update profile
   const updateUser = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/api/auth/updateuser", {
+    const response = await fetch("/api/auth/updateuser", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -42,7 +42,7 @@ const Account = () => {
   // Change password
   const changePassword = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/api/auth/changepassword", {
+    const response = await fetch("api/auth/changepassword", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
