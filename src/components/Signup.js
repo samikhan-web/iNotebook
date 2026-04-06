@@ -21,7 +21,12 @@ const Signup = (props) => {
       })
     });
 
-    const json = await response.json();
+    let json;
+try {
+  json = await response.json();
+} catch {
+  json = { success: false };
+}
     console.log(json);
 
     if (json.success) {
