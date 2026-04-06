@@ -1,6 +1,6 @@
-import { connectDB } from "../../lib/db";
-import User from "../../models/User";
-import { fetchuser } from "../../middleware/fetchuser";
+import { connectDB } from "../../backend/lib/db";
+import User from "../../backend/models/User";
+import { fetchuser } from "../../backend/middleware/fetchuser";
 
 export default async function handler(req, res) {
   await connectDB();

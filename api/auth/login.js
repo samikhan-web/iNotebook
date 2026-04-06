@@ -1,5 +1,5 @@
-import { connectDB } from "../../lib/db";
-import User from "../../models/User";
+import { connectDB } from "../../backend/lib/db";
+import User from "../../backend/models/User";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
@@ -25,6 +25,7 @@ export default async function handler(req, res) {
     res.json({ success: true, authtoken: token });
 
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: err.message });
   }
 }
