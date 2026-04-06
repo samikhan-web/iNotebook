@@ -1,32 +1,19 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true, // ensures no duplicate emails
-  },
-  password: {
-    type: String,
-    required: true,
-  },
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
   profilePicture: {
     type: String,
-    default: "https://via.placeholder.com/150", // default avatar
+    default: "https://via.placeholder.com/150",
   },
   bio: {
     type: String,
-    default: "Hey there! I'm using iNotebook."
+    default: "Hey there! I'm using iNotebook.",
   },
-  date: {
-    type: Date,
-    default: Date.now,
-  }
+  date: { type: Date, default: Date.now },
 });
 
-const User = mongoose.model('user', UserSchema);
-module.exports = User;
+// ✅ IMPORTANT FIX (prevents crash)
+export default mongoose.models.user || mongoose.model("user", UserSchema);

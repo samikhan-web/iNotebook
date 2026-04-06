@@ -1,13 +1,13 @@
-// middleware/fetchuser.js
 import jwt from "jsonwebtoken";
 
 export const fetchuser = (req) => {
-  const token = req.headers["auth-token"];
+  try {
+    const token = req.headers["auth-token"];
+    if (!token) throw new Error("No token");
 
-  if (!token) {
+    const data = jwt.verify(token, process.env.JWT_SECRET);
+    return data.user;
+  } catch (err) {
     throw new Error("Unauthorized");
   }
-
-  const data = jwt.verify(token, process.env.JWT_SECRET);
-  return data.user;
 };
