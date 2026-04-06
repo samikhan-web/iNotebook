@@ -1,4 +1,4 @@
-import { connectDB } from "../../backend/lib/db";
+import { connectDB } from "../../lib/db";
 import Note from "../../backend/models/Note";
 import { fetchuser } from "../../backend/middleware/fetchuser";
 

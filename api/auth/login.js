@@ -1,4 +1,4 @@
-import { connectDB } from "../../backend/lib/db";
+import { connectDB } from "../../lib/db";
 import User from "../../backend/models/User";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
